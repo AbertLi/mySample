@@ -26,7 +26,7 @@ public class SplashActivity extends FragmentActivity {
             public void run() {
                 super.run();
                 try {
-                    sleep(5000);
+                    sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

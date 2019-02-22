@@ -1,6 +1,13 @@
-项目结构
+项目功能：
+1，带有一个开屏广告，接入Neomobi的单平台广告SDK。
+2，该sample以豆瓣的Top250列表为数据，下载并且展示。
+3，点击单条广告进入到webView展示详情。
 
-一，包结构
+
+所有的账号都使用   QQ：3185017028  或者：3185017028@qq.com 或者常用的手机号
+1，友盟统计  Albert_Lee
+
+一，项目结构包结构
 全局：
 包名.binding: 全局的的自定义databinding
 包名.db: 存放App的database对象
@@ -32,7 +39,7 @@
 
 
 
-该sample以豆瓣的Top250列表为数据，下载并且展示。
+豆瓣top250的请求链接
 https://api.douban.com/v2/movie/top250?start=0&count=3
 
 {
