@@ -1,4 +1,4 @@
-package one.example.com.mysample;
+package one.example.com.mysample.main.ui;
 
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
@@ -9,6 +9,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import one.example.com.mysample.R;
 import one.example.com.mysample.databinding.ActivityMainBinding;
 import one.example.com.mysample.main.proje.HeadBean;
 import one.example.com.mysample.main.proje.HeadVisibilityBean;

@@ -262,7 +262,7 @@ loc:41:81 - 41:84
 问题2：
 
 Process: one.example.com.mysample, PID: 22197
-    java.lang.RuntimeException: Unable to start activity ComponentInfo{one.example.com.mysample/one.example.com.mysample.MainActivity}: android.view.InflateException: Binary XML file line #22: Attempt to invoke virtual method 'boolean java.lang.String.equals(java.lang.Object)' on a null object reference
+    java.lang.RuntimeException: Unable to start activity ComponentInfo{one.example.com.mysample/one.example.com.mysample.main.ui.MainActivity}: android.view.InflateException: Binary XML file line #22: Attempt to invoke virtual method 'boolean java.lang.String.equals(java.lang.Object)' on a null object reference
         at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2856)
         at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2931)
         at android.app.ActivityThread.-wrap11(Unknown Source:0)

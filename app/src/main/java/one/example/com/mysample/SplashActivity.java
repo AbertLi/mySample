@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import one.example.com.mysample.main.ui.MainActivity;
 import one.example.com.mysample.utile.Logs;
 
 public class SplashActivity extends FragmentActivity {

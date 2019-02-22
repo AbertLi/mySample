@@ -28,7 +28,7 @@
             android:value="Github"/>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".main.ui.MainActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             >
         </activity>
