@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="mainTitle">20dp</dimen>
+    <dimen name="titleTextSise">16dp</dimen>
+    <dimen name="titleHight">52dp</dimen>
+    <dimen name="marginLeftOrRight">13.33dp</dimen>
+
 </resources>

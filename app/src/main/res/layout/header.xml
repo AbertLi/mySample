@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <!--添加要绑定的数据-->
+        <import type="android.view.View"/>
+
+        <variable
+            name="headBean"
+            type="one.example.com.mysample.main.proje.HeadBean"/>
+
+        <variable
+            name="visibleHeadBean"
+            type="one.example.com.mysample.main.proje.HeadVisibilityBean"/>
+    </data>
+
+    <!--下面的布局文件就是原先的根节点（Root Element）-->
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/titleHight"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:src="@mipmap/btn_back"
+                    android:visibility="@{visibleHeadBean.imageBack ? View.VISIBLE : View.GONE}"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{headBean.left}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/titleTextSise"
+                    android:textStyle="bold"
+                    android:visibility="@{visibleHeadBean.tvBack ? View.VISIBLE : View.GONE}"
+                    />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/image_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ll_back"
+                android:padding="10dp"
+                android:src="@mipmap/btn_close"
+                android:visibility="@{visibleHeadBean.imageClose ? View.VISIBLE : View.GONE}"
+                />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@{headBean.center}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/titleTextSise"
+                android:textStyle="bold"
+                android:visibility="@{visibleHeadBean.tvTitle ? View.VISIBLE : View.GONE}"
+                />
+
+            <TextView
+                android:id="@+id/tv_bianji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/marginLeftOrRight"
+                android:text="@{headBean.right}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/titleTextSise"
+                android:visibility="@{visibleHeadBean.tvEdit ? View.VISIBLE : View.GONE}"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/black"/>
+    </LinearLayout>
+</layout>
