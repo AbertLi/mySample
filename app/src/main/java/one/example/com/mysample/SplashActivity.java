@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import java.util.concurrent.TimeUnit;
+
 import one.example.com.mysample.main.ui.MainActivity;
+import one.example.com.mysample.utile.AppExecutors;
 import one.example.com.mysample.utile.Logs;
 
 public class SplashActivity extends FragmentActivity {
@@ -17,24 +20,21 @@ public class SplashActivity extends FragmentActivity {
             Logs.eprintln(TAG, "isTaskRoot=false");
             finish();
             return;
-        }else{
+        }
+        else {
             Logs.eprintln(TAG, "isTaskRoot=true");
         }
         setContentView(R.layout.activity_splash);
 
-        new Thread() {
+        AppExecutors.getNewScheduledThreadPool2().schedule(new Runnable() {
             @Override
             public void run() {
-                super.run();
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                AppExecutors.getNewScheduledThreadPool2();
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 SplashActivity.this.startActivity(intent);
                 SplashActivity.this.finish();
+                Logs.eprintln(TAG, "isMainThread=" + AppExecutors.isMainThread());
             }
-        }.start();
+        }, 1, TimeUnit.SECONDS);//停顿1s
     }
 }

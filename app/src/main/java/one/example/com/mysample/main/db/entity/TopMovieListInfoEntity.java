@@ -13,8 +13,8 @@ public class TopMovieListInfoEntity {
     private String[] images;//图片
 
     private Director[] directors;//导演
-    private Director[] Cast;//演员
-    private Director[] rating;//演员
+    private Cast[] Cast;//演员
+    private Rating[] rating;//评分
 
 
     //导演
