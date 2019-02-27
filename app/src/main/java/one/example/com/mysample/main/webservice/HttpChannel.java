@@ -1,11 +1,20 @@
 package one.example.com.mysample.main.webservice;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
-
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import one.example.com.mysample.main.webservice.fz.RetrofitUtils;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+/**
+ * Http通道
+ * Created by yangle on 2017/6/19.
+ */
 
 public class HttpChannel {
 
@@ -19,9 +28,9 @@ public class HttpChannel {
     private HttpChannel() {
         // 初始化Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://www.kuaidi100.com/")
+                .baseUrl(Constant.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create()) // json解析
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) // 支持RxJava
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // 支持RxJava
                 .client(RetrofitUtils.getOkHttpClient()) // 打印请求参数
                 .build();
         retrofitService = retrofit.create(RetrofitService.class);
@@ -37,21 +46,25 @@ public class HttpChannel {
         observable.subscribeOn(Schedulers.io())
                   .observeOn(AndroidSchedulers.mainThread())
                   .subscribe(new Observer<BaseBean>() {
-
                       @Override
-                      public void onCompleted() {
+                      public void onSubscribe(@NonNull Disposable d) {
 
                       }
 
                       @Override
-                      public void onError(Throwable e) {
-
-                      }
-
-                      @Override
-                      public void onNext(BaseBean baseBean) {
+                      public void onNext(@NonNull BaseBean baseBean) {
                           Log.i("http返回：", baseBean.toString() + "");
                           ReceiveMessageManager.getInstance().dispatchMessage(baseBean, urlOrigin);
+                      }
+
+                      @Override
+                      public void onError(@NonNull Throwable e) {
+
+                      }
+
+                      @Override
+                      public void onComplete() {
+
                       }
                   });
     }

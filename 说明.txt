@@ -26,7 +26,7 @@
 
 
 
-二，项目框架:binding ，viewmodel , liveData , room , retrofit , Rxjava ,SmartRfreshLayout , RecyclerView
+二，项目框架:binding ，viewmodel , liveData , room , retrofit , Rxjava ,SmartRfreshLayout , RecyclerView , Fresco
 
 
 

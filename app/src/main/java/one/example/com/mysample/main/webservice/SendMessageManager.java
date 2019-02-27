@@ -2,6 +2,13 @@ package one.example.com.mysample.main.webservice;
 
 import io.reactivex.Observable;
 
+/**
+ * 消息发送管理
+ * Created by yangle on 2017/6/19.
+ * 参考代码
+ * https://github.com/alidili/Demos/tree/master/RetrofitDemo
+ */
+
 public class SendMessageManager {
 
     private static SendMessageManager manager;
