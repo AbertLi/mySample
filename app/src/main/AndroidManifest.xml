@@ -2,9 +2,7 @@
 <manifest package="one.example.com.mysample"
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
-
-    <!--<uses-sdk android:minSdkVersion="8"></uses-sdk>  -->
-
+    <!-- <uses-sdk android:minSdkVersion="8"></uses-sdk> -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -19,6 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".main.ui.Main2Activity">
+        </activity>
 
         <meta-data
             android:name="UMENG_APPKEY"
@@ -29,13 +29,11 @@
 
         <activity
             android:name=".main.ui.MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
-            >
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
         </activity>
         <activity
             android:name=".SplashActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
-            >
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

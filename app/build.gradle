@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'kotlin-android'            //加入kotlin的特性
+apply plugin: 'kotlin-android-extensions' //加入kotlin的特性
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -49,4 +50,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //EvenBus
     implementation 'org.greenrobot:eventbus:3.0.0'
+
+    //加入kotlin的特性
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
