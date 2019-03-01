@@ -261,7 +261,6 @@ loc:41:81 - 41:84
 
 
 问题2：
-
 Process: one.example.com.mysample, PID: 22197
     java.lang.RuntimeException: Unable to start activity ComponentInfo{one.example.com.mysample/one.example.com.mysample.main.ui.MainActivity}: android.view.InflateException: Binary XML file line #22: Attempt to invoke virtual method 'boolean java.lang.String.equals(java.lang.Object)' on a null object reference
         at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2856)
@@ -287,3 +286,16 @@ Process: one.example.com.mysample, PID: 22197
   把这个布局的View写成小写的view从而报错
 
 
+问题3：
+
+     Caused by: java.lang.IllegalArgumentException: baseUrl must end in /: https://api.douban.com/v2/movie/top250
+原因：
+请求的链接必须以/结尾。这样 https://api.douban.com/v2/movie/top250/
+
+
+
+问题4：
+    所有的代码都写好了。Retrofit的日志数据也返回了。但是在实体类的地方就是没有数据出来。
+
+原因：
+    实体类和json数据里面的结构不一致。可以缺少字段，但是不能写错。建议使用Android studio自带的GsonFormat工具生成实体类

@@ -23,6 +23,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import one.example.com.mysample.R;
 import one.example.com.mysample.databinding.ActivityMainBinding;
+import one.example.com.mysample.main.db.entity.TopMovieListInfoEntity;
 import one.example.com.mysample.main.proje.HeadBean;
 import one.example.com.mysample.main.proje.HeadVisibilityBean;
 import one.example.com.mysample.main.webservice.Constant;
@@ -30,7 +31,9 @@ import one.example.com.mysample.main.webservice.PostInfo;
 import one.example.com.mysample.main.webservice.RetrofitService;
 import one.example.com.mysample.main.webservice.RetrofitUtils;
 import one.example.com.mysample.main.webservice.SendMessageManager;
+import one.example.com.mysample.utile.EvenType;
 import one.example.com.mysample.utile.Logs;
+import one.example.com.mysample.utile.MyBusEven;
 import one.example.com.mysample.utile.ToastUtiles;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +45,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
     ActivityMainBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,33 +73,25 @@ public class MainActivity extends Activity {
         }
     };
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
-
 
     /**
      * 封装使用
      */
     private void encapRequest() {
-        SendMessageManager.getInstance().getPostInfo("yuantong", "11111111111");
+//        SendMessageManager.getInstance().getPostInfo("yuantong", "11111111111");
+        SendMessageManager.getInstance().getMoveTop(0, 3);
+        //可以用EventBus框架替换
+        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class,
+                new MyBusEven.ICallBack() {
+                    @Override
+                    public void back(Object o) {
+                        Toast.makeText(MainActivity.this, ((TopMovieListInfoEntity) o).toString(), Toast.LENGTH_LONG)
+                             .show();
+                        Logs.eprintln("MyBusEven1");
+                    }
+                });
+
     }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(PostInfo postInfo) {
-        Log.i("接收消息：", postInfo.toString());
-        Toast.makeText(MainActivity.this, postInfo.toString(), Toast.LENGTH_SHORT).show();
-    }
-
-
 
 
     private long firstTime = 0;

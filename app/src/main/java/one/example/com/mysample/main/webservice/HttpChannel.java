@@ -2,11 +2,16 @@ package one.example.com.mysample.main.webservice;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+
+import com.google.gson.JsonObject;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import one.example.com.mysample.main.db.entity.TopMovieListInfoEntity;
+import one.example.com.mysample.utile.Logs;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -28,7 +33,7 @@ public class HttpChannel {
     private HttpChannel() {
         // 初始化Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constant.SERVER_URL)
+                .baseUrl(Constant.SERVER_URL2)
                 .addConverterFactory(GsonConverterFactory.create()) // json解析
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // 支持RxJava
                 .client(RetrofitUtils.getOkHttpClient()) // 打印请求参数
@@ -53,7 +58,6 @@ public class HttpChannel {
 
                       @Override
                       public void onNext(@NonNull BaseBean baseBean) {
-                          Log.i("http返回：", baseBean.toString() + "");
                           ReceiveMessageManager.getInstance().dispatchMessage(baseBean, urlOrigin);
                       }
 
@@ -68,6 +72,36 @@ public class HttpChannel {
                       }
                   });
     }
+
+
+    //JsonObject
+    public void sendMessage2(Observable<JsonObject> observable, final String urlOrigin) {
+        observable.subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe(new Observer<JsonObject>() {
+                      @Override
+                      public void onSubscribe(@NonNull Disposable d) {
+
+                      }
+
+                      @Override
+                      public void onNext(@NonNull JsonObject baseBean) {
+                          Log.i("http返回：", baseBean.toString() + "");
+                          ReceiveMessageManager.getInstance().dispatchMessage2(baseBean, urlOrigin);
+                      }
+
+                      @Override
+                      public void onError(@NonNull Throwable e) {
+
+                      }
+
+                      @Override
+                      public void onComplete() {
+
+                      }
+                  });
+    }
+
 
     public RetrofitService getRetrofitService() {
         return retrofitService;
