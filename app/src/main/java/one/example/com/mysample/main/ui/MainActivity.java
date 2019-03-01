@@ -91,6 +91,7 @@ public class MainActivity extends Activity {
                     }
                 });
 
+        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(TopMovieListInfoEntity.class,o->{Logs.eprintln("MyBusEven2");});
     }
 
 
