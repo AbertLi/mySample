@@ -1,4 +1,4 @@
-package one.example.com.mysample.main.db.entity.subjectentitys;
+package one.example.com.mysample.main.webservice.bean;
 
 import java.util.List;
 
@@ -26,11 +26,11 @@ public  class SubjectsBean {
     private String alt;
     private String id;
 
-    private RatingBean rating;
-    private ImagesBean images;
-    private List<String> genres;
-    private List<CastsBean> casts;
-    private List<DirectorsBean> directors;
+    private RatingBean rating;  //评分
+    private ImagesBean images;  //图片
+    private List<String> genres;//题材
+    private List<CastsBean> casts;//演员
+    private List<DirectorsBean> directors; //导演
 
     public RatingBean getRating() {
         return rating;

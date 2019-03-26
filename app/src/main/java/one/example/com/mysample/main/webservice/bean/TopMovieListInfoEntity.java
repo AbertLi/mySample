@@ -1,9 +1,9 @@
-package one.example.com.mysample.main.db.entity;
+package one.example.com.mysample.main.webservice.bean;
 
 
 import java.util.List;
 
-import one.example.com.mysample.main.db.entity.subjectentitys.SubjectsBean;
+import one.example.com.mysample.main.webservice.bean.SubjectsBean;
 import one.example.com.mysample.main.webservice.BaseBean;
 
 public class TopMovieListInfoEntity extends BaseBean {

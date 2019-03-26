@@ -1,6 +1,6 @@
 package one.example.com.mysample.main.webservice;
 import io.reactivex.Observable;
-import one.example.com.mysample.main.db.entity.TopMovieListInfoEntity;
+import one.example.com.mysample.main.webservice.bean.TopMovieListInfoEntity;
 
 /**
  * 消息发送管理

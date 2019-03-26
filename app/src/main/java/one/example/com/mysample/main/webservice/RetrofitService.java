@@ -1,8 +1,6 @@
 package one.example.com.mysample.main.webservice;
 
-import com.google.gson.JsonObject;
-
-import one.example.com.mysample.main.db.entity.TopMovieListInfoEntity;
+import one.example.com.mysample.main.webservice.bean.TopMovieListInfoEntity;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import io.reactivex.Observable;

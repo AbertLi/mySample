@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 
 import org.greenrobot.eventbus.EventBus;
 
-import one.example.com.mysample.main.db.entity.TopMovieListInfoEntity;
+import one.example.com.mysample.main.webservice.bean.TopMovieListInfoEntity;
 import one.example.com.mysample.utile.EvenType;
 import one.example.com.mysample.utile.Logs;
 import one.example.com.mysample.utile.MyBusEven;
