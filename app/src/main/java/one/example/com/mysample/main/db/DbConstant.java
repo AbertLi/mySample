@@ -9,8 +9,12 @@ public class DbConstant {
     public static final int DB_VERSION_5 = 5;
     public static final int DB_VERSION_6 = 6;
     public static final String DATABASE_NAME = "albert-sample-db";
-    public static final String FAMILY_TABLE_NAME = "FamilyEtity_Table";
-    public static final String PERSON_TABLE_NAME = "PersonBean_Table";
+    public static final String MOVEINFO_SUBJECTS_TABLE = "moveinfo_subjects_table";
+    public static final String MOVEINFO_RATING_TABLE = "moveinfo_rating_table";
+    public static final String MOVEINFO_IMAGES_TABLE = "moveinfo_images_table";
+    public static final String MOVEINFO_GENRES_TABLE = "moveinfo_genres_table";
+    public static final String MOVEINFO_CASTS_TABLE = "moveinfo_casts_table";
+    public static final String MOVEINFO_DIRECTORS_TABLE = "moveinfo_directors_table";
 
 
 }
