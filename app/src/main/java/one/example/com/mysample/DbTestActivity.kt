@@ -19,7 +19,7 @@ class DbTestActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         var rlLLParents = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
         setContentView(getView(), rlLLParents)
-        db = AppDatabase.getInstance(this)
+        db = AppDatabase.getInstance()
     }
 
     fun getView(): LinearLayout {

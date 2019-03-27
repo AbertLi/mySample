@@ -1,17 +1,33 @@
 package one.example.com.mysample.main.viewmodel.repository;
 
-import android.util.Log;
+import one.example.com.mysample.main.db.AppDatabase;
+import one.example.com.mysample.main.db.dao.CastsDao;
+import one.example.com.mysample.main.db.dao.DirectorsDao;
+import one.example.com.mysample.main.db.dao.GenresDao;
+import one.example.com.mysample.main.db.dao.ImagesDao;
+import one.example.com.mysample.main.db.dao.RatingDao;
+import one.example.com.mysample.main.db.dao.SubjectsDao;
 
-import one.example.com.mysample.main.webservice.PostInfo;
-import one.example.com.mysample.main.webservice.RetrofitService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
+/**
+ *  和数据库，ViewModle，网络打交道
+ */
 public class MoveTopRepository {
+    SubjectsDao mSubjectsDao;
+    RatingDao mRatingDao;
+    ImagesDao mImagesDao;
+    GenresDao mGenresDao;
+    DirectorsDao mDirectorsDao;
+    CastsDao mCastsDao;
 
+    public MoveTopRepository() {
+        AppDatabase db = AppDatabase.getInstance();
+        mSubjectsDao = db.subjectsDao();
+        mRatingDao = db.ratingDao();
+        mImagesDao = db.imagesDao();
+        mGenresDao = db.genresDao();
+        mDirectorsDao = db.directorsDao();
+        mCastsDao = db.castsDao();
+    }
 }
 
 

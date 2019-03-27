@@ -14,6 +14,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
+import one.example.com.mysample.AppInstance;
 import one.example.com.mysample.main.db.dao.CastsDao;
 import one.example.com.mysample.main.db.dao.DirectorsDao;
 import one.example.com.mysample.main.db.dao.GenresDao;
@@ -28,16 +29,19 @@ import one.example.com.mysample.main.db.entity.RatingEntity;
 import one.example.com.mysample.main.db.entity.SubjectsEntity;
 import one.example.com.mysample.utile.AppExecutors;
 
+/**
+ * 目前数据库没有建立索引
+ */
 @Database(entities = {SubjectsEntity.class, RatingEntity.class, ImagesEntity.class, GenresEntity.class,
         DirectorsEntity.class, CastsEntity.class}, version = DbConstant.DB_VERSION_1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase mAppDatabase;
 
-    public static AppDatabase getInstance(Context context) {
+    public static AppDatabase getInstance() {
         if (mAppDatabase == null) {
             synchronized (AppDatabase.class) {
                 if (mAppDatabase == null) {
-                    mAppDatabase = buildDatabase(context);
+                    mAppDatabase = buildDatabase(AppInstance.getInstance().getAppContext());
                 }
             }
         }
@@ -61,16 +65,17 @@ public abstract class AppDatabase extends RoomDatabase {
                    })
 //                   .addMigrations(MIGRATION_1_2)//这种方法可以添加字段，修改表名等，比较常用。
 //                .fallbackToDestructiveMigration()//如果更新新数据库,则丢弃原来的表
-                   .allowMainThreadQueries()//表示可以在主线程访问
+//                   .allowMainThreadQueries()//表示可以在主线程访问
                    .build();
     }
 
 
     //版本从1升级到2用到的。
-    private static final Migration MIGRATION_1_2 = new Migration( DbConstant.DB_VERSION_1, DbConstant.DB_VERSION_2 ) {
+    private static final Migration MIGRATION_1_2 = new Migration(DbConstant.DB_VERSION_1, DbConstant.DB_VERSION_2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL( "CREATE  TABLE IF NOT EXISTS 'User'(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT, `last_name` TEXT ,`age` TEXT)" );//添加User表，里面的字段必须和User实体类里面的字段一致。
+            database.execSQL(
+                    "CREATE  TABLE IF NOT EXISTS 'User'(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT, `last_name` TEXT ,`age` TEXT)");//添加User表，里面的字段必须和User实体类里面的字段一致。
         }
     };
 

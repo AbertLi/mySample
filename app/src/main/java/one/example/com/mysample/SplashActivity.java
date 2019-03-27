@@ -39,7 +39,7 @@ public class SplashActivity extends FragmentActivity {
             @Override
             public void run() {
                 AppExecutors.getNewScheduledThreadPool2();
-                Intent intent = new Intent(SplashActivity.this, DbTestActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 SplashActivity.this.startActivity(intent);
                 SplashActivity.this.finish();
                 Logs.eprintln(TAG, "isMainThread=" + AppExecutors.isMainThread());

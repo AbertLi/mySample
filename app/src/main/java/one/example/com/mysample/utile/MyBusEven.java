@@ -3,6 +3,11 @@ package one.example.com.mysample.utile;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+/**
+ * 是件观察者模式，执行在主线程。
+ *
+ * 可以支持一个被观察者，多观察者的情况。
+ */
 public class MyBusEven {
 
     private static Hashtable<String, BusliveEvent> liveDataBusEeven = new Hashtable<>();
@@ -15,6 +20,10 @@ public class MyBusEven {
         return singletHolder.myBusEeven;
     }
 
+    /**
+     * @param key 用于区分不同的接口
+     * @return
+     */
     public BusliveEvent with(String key) {
         if (!liveDataBusEeven.containsKey(key)) {
             liveDataBusEeven.put(key, new BusliveEvent());
@@ -41,6 +50,11 @@ public class MyBusEven {
             }
         }
 
+        /**
+         * 传入一个类的class对象。这个是用来区分同一个接口多个观察者的相应
+         * @param c
+         * @param iCallBack
+         */
         public void observe(Class<?> c, final ICallBack iCallBack) {
             iCallBackTable.put(c, iCallBack);
         }
