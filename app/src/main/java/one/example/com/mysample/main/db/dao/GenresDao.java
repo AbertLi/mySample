@@ -16,9 +16,9 @@ public interface GenresDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubjects(GenresEntity... entity);
 
-    @Query("select * from " + DbConstant.MOVEINFO_GENRES_TABLE + " Limit numLine Offset start")
+    @Query("select * from " + DbConstant.MOVEINFO_GENRES_TABLE + " Limit:numLine Offset:start")
     LiveData<List<GenresEntity>> query(int numLine, int start);
 
-    @Query("select * from " + DbConstant.MOVEINFO_GENRES_TABLE + " where subjects_id = subjectsId")
+    @Query("select * from " + DbConstant.MOVEINFO_GENRES_TABLE + " where subjects_id in (:subjectsId)")
     LiveData<List<GenresEntity>> query(int subjectsId);
 }

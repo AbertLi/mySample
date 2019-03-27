@@ -16,9 +16,9 @@ public interface CastsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubjects(CastsEntity... entity);
 
-    @Query("select * from " + DbConstant.MOVEINFO_CASTS_TABLE + " Limit numLine Offset start")
+    @Query("select * from " + DbConstant.MOVEINFO_CASTS_TABLE + " Limit:numLine Offset:start")
     LiveData<List<CastsEntity>> query(int numLine, int start);
 
-    @Query("select * from " + DbConstant.MOVEINFO_CASTS_TABLE + " where subjects_id = subjectsId")
+    @Query("select * from " + DbConstant.MOVEINFO_CASTS_TABLE + " where subjects_id in (:subjectsId)")
     LiveData<List<CastsEntity>> query(int subjectsId);
 }

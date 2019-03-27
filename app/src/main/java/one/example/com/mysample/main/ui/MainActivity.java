@@ -1,9 +1,9 @@
 package one.example.com.mysample.main.ui;
 
-import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -21,7 +21,7 @@ import one.example.com.mysample.utile.Logs;
 import one.example.com.mysample.utile.MyBusEven;
 import one.example.com.mysample.utile.ToastUtiles;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
     private static final String TAG = "MainActivity";
     ActivityMainBinding binding;
 

@@ -18,9 +18,9 @@ public interface RatingDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubjects(RatingEntity... entity);
 
-    @Query("select * from " + DbConstant.MOVEINFO_RATING_TABLE + " Limit numLine Offset start")
+    @Query("select * from " + DbConstant.MOVEINFO_RATING_TABLE + " Limit:numLine Offset:start")
     LiveData<List<RatingEntity>> query(int numLine, int start);
 
-    @Query("select * from " + DbConstant.MOVEINFO_RATING_TABLE + " where subjects_id = subjectsId")
+    @Query("select * from " + DbConstant.MOVEINFO_RATING_TABLE + " where subjects_id  in (:subjectsId)")
     LiveData<List<RatingEntity>> query(int subjectsId);
 }

@@ -2,6 +2,8 @@ package one.example.com.mysample.main.db.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import one.example.com.mysample.main.db.DbConstant;
 
 /**
@@ -9,7 +11,8 @@ import one.example.com.mysample.main.db.DbConstant;
  */
 @Entity(tableName = DbConstant.MOVEINFO_SUBJECTS_TABLE)
 public class SubjectsEntity {
-    @PrimaryKey
+    @PrimaryKey( autoGenerate = false)
+    @NonNull
     private String id;
     private String title;
     private int collect_count;
@@ -22,7 +25,7 @@ public class SubjectsEntity {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 

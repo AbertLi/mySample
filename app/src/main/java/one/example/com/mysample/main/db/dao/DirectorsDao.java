@@ -16,9 +16,9 @@ public interface DirectorsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubjects(DirectorsEntity... entity);
 
-    @Query("select * from " + DbConstant.MOVEINFO_DIRECTORS_TABLE + " Limit numLine Offset start")
+    @Query("select * from " + DbConstant.MOVEINFO_DIRECTORS_TABLE + " Limit:numLine Offset:start")
     LiveData<List<DirectorsEntity>> query(int numLine, int start);
 
-    @Query("select * from " + DbConstant.MOVEINFO_DIRECTORS_TABLE + " where subjects_id = subjectsId")
+    @Query("select * from " + DbConstant.MOVEINFO_DIRECTORS_TABLE + " where subjects_id in (:subjectsId)")
     LiveData<List<DirectorsEntity>> query(int subjectsId);
 }

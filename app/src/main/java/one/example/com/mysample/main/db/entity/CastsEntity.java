@@ -3,6 +3,7 @@ package one.example.com.mysample.main.db.entity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import one.example.com.mysample.main.db.DbConstant;
 
@@ -14,6 +15,7 @@ public class CastsEntity {
     private int subjects_id;//关联SubjectsEntity里面id 的外键id
 
     @PrimaryKey
+    @NonNull
     private String id;
     private String alt;
     private String name;

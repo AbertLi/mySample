@@ -18,9 +18,9 @@ public interface ImagesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubjects(ImagesEntity... entity);
 
-    @Query("select * from " + DbConstant.MOVEINFO_IMAGES_TABLE + " Limit numLine Offset start")
+    @Query("select * from " + DbConstant.MOVEINFO_IMAGES_TABLE + " Limit:numLine Offset:start")
     LiveData<List<ImagesEntity>> query(int numLine, int start);
 
-    @Query("select * from " + DbConstant.MOVEINFO_IMAGES_TABLE + " where subjects_id = subjectsId")
+    @Query("select * from " + DbConstant.MOVEINFO_IMAGES_TABLE + " where subjects_id in (:subjectsId)")
     LiveData<List<ImagesEntity>> query(int subjectsId);
 }

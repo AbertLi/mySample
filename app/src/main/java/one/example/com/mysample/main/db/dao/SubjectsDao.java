@@ -16,7 +16,11 @@ public interface SubjectsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubjects(SubjectsEntity... entity);
 
-    @Query("select * from " + DbConstant.MOVEINFO_SUBJECTS_TABLE + " Limit numLine Offset start")
+    @Query("select * from " + DbConstant.MOVEINFO_SUBJECTS_TABLE + " Limit:numLine Offset:start")
     LiveData<List<SubjectsEntity>> query(int numLine, int start);
+
+
+    @Query("select * from " + DbConstant.MOVEINFO_SUBJECTS_TABLE + " Limit:numLine Offset:start")
+    List<SubjectsEntity> queryList(int numLine, int start);
 
 }
