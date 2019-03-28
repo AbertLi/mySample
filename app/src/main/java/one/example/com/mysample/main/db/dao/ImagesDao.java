@@ -16,7 +16,7 @@ import one.example.com.mysample.main.db.entity.ImagesEntity;
 @Dao
 public interface ImagesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSubjects(ImagesEntity... entity);
+    void insertImages(ImagesEntity... entity);
 
     @Query("select * from " + DbConstant.MOVEINFO_IMAGES_TABLE + " Limit:numLine Offset:start")
     LiveData<List<ImagesEntity>> query(int numLine, int start);

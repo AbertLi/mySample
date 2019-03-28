@@ -14,7 +14,7 @@ import one.example.com.mysample.main.db.entity.DirectorsEntity;
 @Dao
 public interface DirectorsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSubjects(DirectorsEntity... entity);
+    void insertDirectors(DirectorsEntity... entity);
 
     @Query("select * from " + DbConstant.MOVEINFO_DIRECTORS_TABLE + " Limit:numLine Offset:start")
     LiveData<List<DirectorsEntity>> query(int numLine, int start);

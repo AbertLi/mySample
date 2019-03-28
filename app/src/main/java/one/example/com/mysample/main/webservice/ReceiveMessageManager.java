@@ -51,17 +51,17 @@ public class ReceiveMessageManager {
     }
 
 
-    //JsonObject
-    public void dispatchMessage2(JsonObject baseBean, String urlOrigin) {
-        switch (urlOrigin) {
-            case Constant.UrlOrigin.get_move_post_info:
-                Logs.eprintln("ReceiveMessageManager", "" + baseBean.toString());
-                MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).postValue(baseBean);
-
-//                EventBus.getDefault().post(baseBean);
-                break;
-            default:
-                break;
-        }
-    }
+//    //JsonObject
+//    public void dispatchMessage2(JsonObject baseBean, String urlOrigin) {
+//        switch (urlOrigin) {
+//            case Constant.UrlOrigin.get_move_post_info:
+//                Logs.eprintln("ReceiveMessageManager", "" + baseBean.toString());
+//                MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).postValue(baseBean);
+//
+////                EventBus.getDefault().post(baseBean);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 }

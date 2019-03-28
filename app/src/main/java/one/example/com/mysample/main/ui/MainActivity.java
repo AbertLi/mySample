@@ -33,7 +33,7 @@ public class MainActivity extends FragmentActivity {
         binding.setVisibleHeadBean(new HeadVisibilityBean(false, false, false, true, false));
         binding.mainRefreshLayout.setOnLoadMoreListener(loadMoreListener);
         binding.mainRefreshLayout.setOnRefreshListener(refreshListener);
-        encapRequest();
+//        encapRequest();
     }
 
 
@@ -56,21 +56,20 @@ public class MainActivity extends FragmentActivity {
      * 封装使用
      */
     private void encapRequest() {
-//        SendMessageManager.getInstance().getPostInfo("yuantong", "11111111111");
-        SendMessageManager.getInstance().getMoveTop(0, 3);
-        //可以用EventBus框架替换
-        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class,
-                new MyBusEven.ICallBack() {
-                    @Override
-                    public void back(Object o) {
-                        ToastUtiles.toastShort(MainActivity.this, ((TopMovieListInfoEntity) o).toString());
-                        Logs.eprintln("MyBusEven1");
-                    }
-                });
-
-        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(TopMovieListInfoEntity.class, o -> {
-            Logs.eprintln("MyBusEven2");
-        });
+//        SendMessageManager.getInstance().getMoveTop(0, 3);
+//        //可以用EventBus框架替换
+//        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class,
+//                new MyBusEven.ICallBack() {
+//                    @Override
+//                    public void back(Object o) {
+//                        ToastUtiles.toastShort(MainActivity.this, ((TopMovieListInfoEntity) o).toString());
+//                        Logs.eprintln("MyBusEven1");
+//                    }
+//                });
+//
+//        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(TopMovieListInfoEntity.class, o -> {
+//            Logs.eprintln("MyBusEven2");
+//        });
     }
 
 

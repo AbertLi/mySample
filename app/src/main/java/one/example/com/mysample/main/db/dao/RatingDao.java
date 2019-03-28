@@ -16,7 +16,7 @@ import one.example.com.mysample.main.db.entity.RatingEntity;
 @Dao
 public interface RatingDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSubjects(RatingEntity... entity);
+    void insertRating(RatingEntity... entity);
 
     @Query("select * from " + DbConstant.MOVEINFO_RATING_TABLE + " Limit:numLine Offset:start")
     LiveData<List<RatingEntity>> query(int numLine, int start);

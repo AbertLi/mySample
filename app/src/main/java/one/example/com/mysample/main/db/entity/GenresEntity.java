@@ -12,7 +12,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(tableName = DbConstant.MOVEINFO_GENRES_TABLE, foreignKeys = @ForeignKey(entity = SubjectsEntity.class,
         parentColumns = "id", childColumns = "subjects_id", onDelete = CASCADE))
 public class GenresEntity {
-    private int subjects_id;//关联SubjectsEntity里面id 的外键id
+    private String subjects_id;//关联SubjectsEntity里面id 的外键id
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id;
@@ -27,11 +27,11 @@ public class GenresEntity {
         this.id = id;
     }
 
-    public int getSubjects_id() {
+    public String getSubjects_id() {
         return subjects_id;
     }
 
-    public void setSubjects_id(int subjects_id) {
+    public void setSubjects_id(String subjects_id) {
         this.subjects_id = subjects_id;
     }
 

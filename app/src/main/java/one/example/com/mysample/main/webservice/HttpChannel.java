@@ -1,15 +1,13 @@
 package one.example.com.mysample.main.webservice;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
-
-import com.google.gson.JsonObject;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import one.example.com.mysample.utile.Logs;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -51,7 +49,7 @@ public class HttpChannel {
                   .subscribe(new Observer<BaseBean>() {
                       @Override
                       public void onSubscribe(@NonNull Disposable d) {
-
+                          Logs.eprintln("HttpChannel", "onSubscribe = " + d.toString());
                       }
 
                       @Override
@@ -61,41 +59,12 @@ public class HttpChannel {
 
                       @Override
                       public void onError(@NonNull Throwable e) {
-
+                          Logs.eprintln("HttpChannel", "onError = " + e.toString());
                       }
 
                       @Override
                       public void onComplete() {
-
-                      }
-                  });
-    }
-
-
-    //JsonObject
-    public void sendMessage2(Observable<JsonObject> observable, final String urlOrigin) {
-        observable.subscribeOn(Schedulers.io())
-                  .observeOn(AndroidSchedulers.mainThread())
-                  .subscribe(new Observer<JsonObject>() {
-                      @Override
-                      public void onSubscribe(@NonNull Disposable d) {
-
-                      }
-
-                      @Override
-                      public void onNext(@NonNull JsonObject baseBean) {
-                          Log.i("http返回：", baseBean.toString() + "");
-                          ReceiveMessageManager.getInstance().dispatchMessage2(baseBean, urlOrigin);
-                      }
-
-                      @Override
-                      public void onError(@NonNull Throwable e) {
-
-                      }
-
-                      @Override
-                      public void onComplete() {
-
+                          Logs.eprintln("HttpChannel", "onComplete");
                       }
                   });
     }

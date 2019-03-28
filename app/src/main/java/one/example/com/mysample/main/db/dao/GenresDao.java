@@ -14,7 +14,7 @@ import one.example.com.mysample.main.db.entity.GenresEntity;
 @Dao
 public interface GenresDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSubjects(GenresEntity... entity);
+    void insertGenres(GenresEntity... entity);
 
     @Query("select * from " + DbConstant.MOVEINFO_GENRES_TABLE + " Limit:numLine Offset:start")
     LiveData<List<GenresEntity>> query(int numLine, int start);

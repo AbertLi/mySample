@@ -3,6 +3,8 @@ package one.example.com.mysample.main.webservice;
 
 import android.util.Log;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -32,6 +34,10 @@ public class RetrofitUtils {
         loggingInterceptor.setLevel(level);
         // 定制OkHttp
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        //https://blog.csdn.net/rainbow702/article/details/53544671
+        httpClientBuilder.connectTimeout(1000, TimeUnit.SECONDS);
+        httpClientBuilder.readTimeout(1000, TimeUnit.SECONDS);
+        httpClientBuilder.writeTimeout(1000, TimeUnit.SECONDS);
         // OkHttp进行添加拦截器loggingInterceptor
         httpClientBuilder.addInterceptor(loggingInterceptor);
         return httpClientBuilder.build();
