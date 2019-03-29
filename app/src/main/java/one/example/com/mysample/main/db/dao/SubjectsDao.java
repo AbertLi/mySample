@@ -19,8 +19,6 @@ public interface SubjectsDao {
     @Query("select * from " + DbConstant.MOVEINFO_SUBJECTS_TABLE + " Limit:numLine Offset:start")
     LiveData<List<SubjectsEntity>> query(int numLine, int start);
 
-
     @Query("select * from " + DbConstant.MOVEINFO_SUBJECTS_TABLE + " Limit:numLine Offset:start")
-    List<SubjectsEntity> queryList(int numLine, int start);
-
+    LiveData<List<SubjectsEntity>> queryAll(int numLine, int start);
 }

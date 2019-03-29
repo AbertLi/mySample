@@ -1,5 +1,9 @@
 package one.example.com.mysample.main.viewmodel.repository;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MediatorLiveData;
+import android.arch.lifecycle.MutableLiveData;
+
 import java.util.List;
 
 import one.example.com.mysample.main.db.AppDatabase;
@@ -33,7 +37,7 @@ import one.example.com.mysample.utile.MyBusEven;
  * （网络超时直接访问Db。网络返回数据插入Db同时更新UI --- 这里放在同一个类里面完成 ）
  *
  * 方案二
- * 和数据库，ViewModle，网络打交道 （网络超时直接访问Db。网络返回数据插入Db同时更新UI --- 这里放在同一个类里面完成 ）
+ * 和数据库，ViewModle，网络打交道 （先直接访问数据库数据等网络数据返回的是直接刷新数据，再更新Ui ）
  *
  */
 public class MoveTopRepository {
@@ -52,9 +56,34 @@ public class MoveTopRepository {
         mGenresDao = db.genresDao();
         mDirectorsDao = db.directorsDao();
         mCastsDao = db.castsDao();
-
     }
 
+
+//    public void queryAll(MediatorLiveData<List<TopMovieListInfoEntity>> liveData,int numLine, int start) {
+//        //JSON.parseObject()  https://blog.csdn.net/weixin_37623470/article/details/79030525
+//        LiveData<List<SubjectsEntity>> liveData1 = mSubjectsDao.query(numLine, start);
+//        liveData.addSource(liveData1,liveData::setValue);
+//    }
+    public void querySubjects(MediatorLiveData<List<SubjectsEntity>> liveData,int numLine, int start) {
+        //JSON.parseObject()  https://blog.csdn.net/weixin_37623470/article/details/79030525
+        LiveData<List<SubjectsEntity>> liveData1 = mSubjectsDao.query(numLine, start);
+        liveData.addSource(liveData1,liveData::setValue);
+    }
+
+    public void queryRating(MediatorLiveData<List<RatingEntity>> liveData,int numLine, int start) {
+        LiveData<List<RatingEntity>> liveData1 = mRatingDao.query(numLine, start);
+        liveData.addSource(liveData1,liveData::setValue);
+    }
+
+
+    public void getNetData(int start, int con) {
+        SendMessageManager.getInstance().getMoveTop(start, con);
+        //可以用EventBus框架替换
+        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class, o -> {
+            insertAll((TopMovieListInfoEntity) o);
+            Logs.eprintln("EVEN_TOP250_REQUEST =" + ((TopMovieListInfoEntity) o).toString());
+        });
+    }
 
     public void insertAll(TopMovieListInfoEntity entity) {
         if (entity!=null){
@@ -157,20 +186,6 @@ public class MoveTopRepository {
                 }
             }
         }
-    }
-
-    public void querySubjects() {
-        //JSON.parseObject()  https://blog.csdn.net/weixin_37623470/article/details/79030525
-
-    }
-
-    public void getNetData(int start, int con) {
-        SendMessageManager.getInstance().getMoveTop(start, con);
-        //可以用EventBus框架替换
-        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class, o -> {
-            insertAll((TopMovieListInfoEntity) o);
-            Logs.eprintln("EVEN_TOP250_REQUEST =" + ((TopMovieListInfoEntity) o).toString());
-        });
     }
 }
 

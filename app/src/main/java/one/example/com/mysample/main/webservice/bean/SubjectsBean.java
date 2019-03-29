@@ -29,6 +29,7 @@ public  class SubjectsBean {
     private RatingBean rating;  //评分
     private ImagesBean images;  //图片
     private List<String> genres;//题材
+
     private List<CastsBean> casts;//演员
     private List<DirectorsBean> directors; //导演
 
@@ -171,6 +172,16 @@ public  class SubjectsBean {
 
         public void setMin(int min) {
             this.min = min;
+        }
+
+        @Override
+        public String toString() {
+            return "RatingBean{" +
+                    "max=" + max +
+                    ", average=" + average +
+                    ", stars='" + stars + '\'' +
+                    ", min=" + min +
+                    '}';
         }
     }
 
@@ -315,6 +326,15 @@ public  class SubjectsBean {
 
             public void setMedium(String medium) {
                 this.medium = medium;
+            }
+
+            @Override
+            public String toString() {
+                return "AvatarsBean{" +
+                        "small='" + small + '\'' +
+                        ", large='" + large + '\'' +
+                        ", medium='" + medium + '\'' +
+                        '}';
             }
         }
 
