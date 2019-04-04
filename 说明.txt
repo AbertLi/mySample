@@ -331,3 +331,9 @@ Process: one.example.com.mysample, PID: 22197
 
 原因：
     实体类和json数据里面的结构不一致。可以缺少字段，但是不能写错。建议使用Android studio自带的GsonFormat工具生成实体类
+
+
+
+问题4：AGPBI: {"kind":"error","text":"error: attribute \u0027com.example.host:frescoUrl\u0027 not found.","sources":[{"file":"D:\\GitLabLoclaLibray\\dex_view\\sample\\host\\app\\src\\main\\res\\layout\\item3_layout.xml","position":{"startLine":40}}],"original":"","tool":"AAPT"}
+
+原因：在xml布局文件里面加入了bingdin的写法但是没有使用layout最外层布局
