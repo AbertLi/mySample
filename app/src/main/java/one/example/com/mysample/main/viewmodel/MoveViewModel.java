@@ -6,16 +6,13 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.support.annotation.NonNull;
 
-import java.util.List;
-
-import one.example.com.mysample.main.db.entity.SubjectsEntity;
 import one.example.com.mysample.main.viewmodel.repository.MoveTopRepository;
 
 /**
  * 直接和UI打交道
  */
 public class MoveViewModel extends AndroidViewModel {
-    MediatorLiveData<List<SubjectsEntity>> mMoveTopLiveData;
+    MediatorLiveData<MoveLiveDataBean> mMoveTopLiveData;
     MoveTopRepository mMoveTopRepository;
 
     public MoveViewModel(@NonNull Application application) {
@@ -24,13 +21,17 @@ public class MoveViewModel extends AndroidViewModel {
         mMoveTopRepository = new MoveTopRepository();
     }
 
-    public LiveData<List<SubjectsEntity>> getSubjectData() {
+    public LiveData<MoveLiveDataBean> getSubjectData() {
         return mMoveTopLiveData;
     }
 
 
     public void requestMoveData(int start, int con) {
-        mMoveTopRepository.getNetData(start, con);
-        mMoveTopRepository.querySubjects(mMoveTopLiveData, 10, 0);
+        mMoveTopRepository.getNetData(start, con,mMoveTopLiveData);//请求服务器
+        mMoveTopRepository.querySubjects(mMoveTopLiveData, con, start);
+    }
+
+    public void requestNet(int start, int con) {
+        mMoveTopRepository.getNetData(start, con,mMoveTopLiveData);//请求服务器
     }
 }

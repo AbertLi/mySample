@@ -1,5 +1,6 @@
 package one.example.com.mysample.main.ui;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,18 +13,17 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import one.example.com.mysample.R;
 import one.example.com.mysample.databinding.ActivityMainBinding;
-import one.example.com.mysample.main.webservice.bean.TopMovieListInfoEntity;
+import one.example.com.mysample.main.viewmodel.MoveViewModel;
 import one.example.com.mysample.main.proje.HeadBean;
 import one.example.com.mysample.main.proje.HeadVisibilityBean;
-import one.example.com.mysample.main.webservice.SendMessageManager;
-import one.example.com.mysample.utile.EvenType;
 import one.example.com.mysample.utile.Logs;
-import one.example.com.mysample.utile.MyBusEven;
 import one.example.com.mysample.utile.ToastUtiles;
 
 public class MainActivity extends FragmentActivity {
     private static final String TAG = "MainActivity";
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
+    private MoveViewModel viewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,28 @@ public class MainActivity extends FragmentActivity {
         binding.setVisibleHeadBean(new HeadVisibilityBean(false, false, false, true, false));
         binding.mainRefreshLayout.setOnLoadMoreListener(loadMoreListener);
         binding.mainRefreshLayout.setOnRefreshListener(refreshListener);
-//        encapRequest();
+        viewModel = ViewModelProviders.of(this).get(MoveViewModel.class);
+        viewModel.requestMoveData(1, 10);
+        viewModel.getSubjectData().observe(this, liveDataBean -> {
+            Logs.eprintln(TAG, "subscribeUi  onChanged  liveDataBean==null " + (liveDataBean == null));
+            if (isRefresh) {
+                if (liveDataBean != null) {
+                    Logs.eprintln(TAG, "subscribeUi  onChanged=" + liveDataBean);
+                    if (liveDataBean.isSuc()) {
+                        binding.mainRefreshLayout.finishRefresh(true);
+                        ToastUtiles.toastShort(this,
+                                this.getApplicationContext().getResources().getString(R.string.refresh_suc));
+                    }
+                    else {
+                        binding.mainRefreshLayout.finishRefresh(false);
+                        ToastUtiles.toastShort(this,
+                                this.getApplicationContext().getResources().getString(R.string.refresh_fail));
+                    }
+                }
+                isRefresh = false;
+            }
+            binding.executePendingBindings();
+        });
     }
 
 
@@ -44,34 +65,18 @@ public class MainActivity extends FragmentActivity {
         }
     };
 
+    boolean isRefresh;
+
+
     OnRefreshListener refreshListener = new OnRefreshListener() {
         @Override
         public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+            isRefresh = true;
+            viewModel.requestNet(1, 10);
             Logs.eprintln(TAG, "onRefresh");
+            binding.mainRefreshLayout.finishRefresh(true);
         }
     };
-
-
-    /**
-     * 封装使用
-     */
-    private void encapRequest() {
-//        SendMessageManager.getInstance().getMoveTop(0, 3);
-//        //可以用EventBus框架替换
-//        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class,
-//                new MyBusEven.ICallBack() {
-//                    @Override
-//                    public void back(Object o) {
-//                        ToastUtiles.toastShort(MainActivity.this, ((TopMovieListInfoEntity) o).toString());
-//                        Logs.eprintln("MyBusEven1");
-//                    }
-//                });
-//
-//        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(TopMovieListInfoEntity.class, o -> {
-//            Logs.eprintln("MyBusEven2");
-//        });
-    }
-
 
     private long firstTime = 0;
 
@@ -95,3 +100,22 @@ public class MainActivity extends FragmentActivity {
 }
 
 
+/**
+ * 封装使用
+ */
+//    private void encapRequest() {
+//        SendMessageManager.getInstance().getMoveTop(0, 3);
+//        //可以用EventBus框架替换
+//        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class,
+//                new MyBusEven.ICallBack() {
+//                    @Override
+//                    public void back(Object o) {
+//                        ToastUtiles.toastShort(MainActivity.this, ((TopMovieListInfoEntity) o).toString());
+//                        Logs.eprintln("MyBusEven1");
+//                    }
+//                });
+//
+//        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(TopMovieListInfoEntity.class, o -> {
+//            Logs.eprintln("MyBusEven2");
+//        });
+//    }

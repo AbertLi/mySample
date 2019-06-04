@@ -26,16 +26,16 @@ public class SendMessageManager {
         retrofitService = httpChannel.getRetrofitService();
     }
 
-    /**
-     * 获取快递信息
-     *
-     * @param type   快递类型
-     * @param postid 快递单号
-     */
-    public void getPostInfo(String type, String postid) {
-        Observable<PostInfo> observable = retrofitService.getPostInfoRx(type, postid);
-        httpChannel.sendMessage(observable, Constant.UrlOrigin.get_post_info);
-    }
+//    /**
+//     * 获取快递信息
+//     *
+//     * @param type   快递类型
+//     * @param postid 快递单号
+//     */
+//    public void getPostInfo(String type, String postid) {
+//        Observable<PostInfo> observable = retrofitService.getPostInfoRx(type, postid);
+//        httpChannel.sendMessage(observable, Constant.UrlOrigin.get_post_info);
+//    }
 
 
     /**

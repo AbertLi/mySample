@@ -33,6 +33,7 @@ public class MyBusEven {
 
     public interface ICallBack {
         void back(Object o);
+        void fail();
     }
 
     public static class BusliveEvent {
@@ -47,6 +48,17 @@ public class MyBusEven {
             while (e2.hasMoreElements()) {
                 ICallBack callBack = (ICallBack) e2.nextElement();
                 callBack.back(value);
+            }
+        }
+
+        public void postFail(final String failMsg) {
+            if (iCallBackTable.size() == 0) {
+                return;
+            }
+            Enumeration<ICallBack> e2 = iCallBackTable.elements();
+            while (e2.hasMoreElements()) {
+                ICallBack callBack = (ICallBack) e2.nextElement();
+                callBack.back(failMsg);
             }
         }
 

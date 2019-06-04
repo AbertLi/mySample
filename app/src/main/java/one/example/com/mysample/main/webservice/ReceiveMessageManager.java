@@ -32,13 +32,18 @@ public class ReceiveMessageManager {
      * @param baseBean  Bean基类
      * @param urlOrigin 请求地址
      */
-    public void dispatchMessage(BaseBean baseBean, String urlOrigin) {
+    public void dispatchMessage(BaseBean baseBean, String urlOrigin, String failMsg) {
         switch (urlOrigin) {
             case Constant.UrlOrigin.get_move_post_info:
                 Logs.eprintln("ReceiveMessageManager", "" + ((TopMovieListInfoEntity) baseBean).toString());
-                TopMovieListInfoEntity postInfo1 = (TopMovieListInfoEntity) baseBean;
+//                TopMovieListInfoEntity postInfo1 = (TopMovieListInfoEntity) baseBean;
 //                EventBus.getDefault().post(postInfo1);
-                MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).postValue(baseBean);
+                if (baseBean == null && failMsg != null) {
+                    MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).postFail(failMsg);
+                }
+                else {
+                    MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).postValue(baseBean);
+                }
                 break;
             case Constant.UrlOrigin.get_post_info:
                 PostInfo postInfo = (PostInfo) baseBean;

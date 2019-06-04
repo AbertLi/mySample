@@ -20,6 +20,7 @@ import one.example.com.mysample.main.db.entity.ImagesEntity;
 import one.example.com.mysample.main.db.entity.RatingEntity;
 import one.example.com.mysample.main.db.entity.SubjectsEntity;
 import one.example.com.mysample.main.ui.MainActivity;
+import one.example.com.mysample.main.viewmodel.MoveLiveDataBean;
 import one.example.com.mysample.main.webservice.SendMessageManager;
 import one.example.com.mysample.main.webservice.bean.SubjectsBean;
 import one.example.com.mysample.main.webservice.bean.TopMovieListInfoEntity;
@@ -41,6 +42,7 @@ import one.example.com.mysample.utile.MyBusEven;
  *
  */
 public class MoveTopRepository {
+    MediatorLiveData<MoveLiveDataBean> mLiveData;
     SubjectsDao mSubjectsDao;
     RatingDao mRatingDao;
     ImagesDao mImagesDao;
@@ -64,25 +66,44 @@ public class MoveTopRepository {
 //        LiveData<List<SubjectsEntity>> liveData1 = mSubjectsDao.query(numLine, start);
 //        liveData.addSource(liveData1,liveData::setValue);
 //    }
-    public void querySubjects(MediatorLiveData<List<SubjectsEntity>> liveData,int numLine, int start) {
+    public void querySubjects(MediatorLiveData<MoveLiveDataBean> liveData,int numLine, int start) {
         //JSON.parseObject()  https://blog.csdn.net/weixin_37623470/article/details/79030525
         LiveData<List<SubjectsEntity>> liveData1 = mSubjectsDao.query(numLine, start);
-        liveData.addSource(liveData1,liveData::setValue);
+
+
+        mLiveData = liveData;
+        liveData.addSource(liveData1,value->{
+            MoveLiveDataBean bean = new MoveLiveDataBean();
+            bean.setList(value);
+            bean.setSuc(true);
+            liveData.setValue(bean);
+        });
     }
 
-    public void queryRating(MediatorLiveData<List<RatingEntity>> liveData,int numLine, int start) {
-        LiveData<List<RatingEntity>> liveData1 = mRatingDao.query(numLine, start);
-        liveData.addSource(liveData1,liveData::setValue);
-    }
+//    public void queryRating(MediatorLiveData<List<RatingEntity>> liveData,int numLine, int start) {
+//        LiveData<List<RatingEntity>> liveData1 = mRatingDao.query(numLine, start);
+//        liveData.addSource(liveData1,liveData::setValue);
+//    }
 
-
-    public void getNetData(int start, int con) {
+    public void getNetData(int start, int con, MediatorLiveData<MoveLiveDataBean> liveData) {
         SendMessageManager.getInstance().getMoveTop(start, con);
         //可以用EventBus框架替换
-        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class, o -> {
-            insertAll((TopMovieListInfoEntity) o);
-            Logs.eprintln("EVEN_TOP250_REQUEST =" + ((TopMovieListInfoEntity) o).toString());
-        });
+        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(MainActivity.class,
+                new MyBusEven.ICallBack() {
+                    @Override
+                    public void back(Object o) {
+                        insertAll((TopMovieListInfoEntity) o);
+                        Logs.eprintln("EVEN_TOP250_REQUEST =" + ((TopMovieListInfoEntity) o).toString());
+                    }
+
+                    @Override
+                    public void fail() {
+                        MoveLiveDataBean bean = new MoveLiveDataBean();
+                        bean.setList(null);
+                        bean.setSuc(false);
+                        liveData.setValue(bean);
+                    }
+                });
     }
 
     public void insertAll(TopMovieListInfoEntity entity) {

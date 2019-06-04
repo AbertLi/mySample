@@ -54,12 +54,14 @@ public class HttpChannel {
 
                       @Override
                       public void onNext(@NonNull BaseBean baseBean) {
-                          ReceiveMessageManager.getInstance().dispatchMessage(baseBean, urlOrigin);
+                          ReceiveMessageManager.getInstance().dispatchMessage(baseBean, urlOrigin,null);
                       }
 
                       @Override
                       public void onError(@NonNull Throwable e) {
                           Logs.eprintln("HttpChannel", "onError = " + e.toString());
+                          ReceiveMessageManager.getInstance().dispatchMessage(null, urlOrigin,
+                                  e == null ? "failMsg=null" : e.toString());
                       }
 
                       @Override

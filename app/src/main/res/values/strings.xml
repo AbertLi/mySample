@@ -3,4 +3,7 @@
     <string name="app_name">电影榜</string>
     <string name="words_top">全球电影榜</string>
     <string name="agineBacktoast">再按一次返回键退出</string>
+    <string name="refresh_suc">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+
 </resources>

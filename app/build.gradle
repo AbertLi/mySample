@@ -58,4 +58,16 @@ dependencies {
     //加入kotlin的特性
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation files('libs/fastjson-1.2.56.jar')
+    //Fresco
+    implementation 'com.facebook.fresco:fresco:0.14.1'
+    implementation 'com.facebook.fresco:animated-base-support:0.14.1'//在 API < 14 上的机器支持 WebP 时，需要添加以下依赖
+    implementation 'com.facebook.fresco:animated-gif:0.14.1'         //支持GIF动图，需要添加以下依赖
+    implementation 'com.facebook.fresco:webpsupport:0.14.1'                 //支持WebP，需要添加以下依赖
+    implementation 'com.facebook.fresco:animated-webp:0.14.1'               //支持WebP动图，需要添加以下依赖
+    implementation 'com.facebook.fresco:imagepipeline-okhttp3:0.14.1'       // 网络实现层想使用okhttp3，需要添加以下依赖
+
+    // ViewModel和LiveData依赖google demo引用
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
+
 }
