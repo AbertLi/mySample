@@ -11,6 +11,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+
 import one.example.com.mysample.R;
 import one.example.com.mysample.databinding.ActivityMainBinding;
 import one.example.com.mysample.main.viewmodel.MoveViewModel;
@@ -29,7 +30,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.setHeadBean(new HeadBean("", "全球电影榜", ""));
+        binding.setHeadBean(new HeadBean("", "视频段子", ""));
         binding.setVisibleHeadBean(new HeadVisibilityBean(false, false, false, true, false));
         binding.mainRefreshLayout.setOnLoadMoreListener(loadMoreListener);
         binding.mainRefreshLayout.setOnRefreshListener(refreshListener);
@@ -62,6 +63,7 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
             Logs.eprintln(TAG, "onLoadMore");
+//            binding.mainRefreshLayout.finishLoadMore();
         }
     };
 
@@ -98,8 +100,6 @@ public class MainActivity extends FragmentActivity {
         return super.onKeyDown(keyCode, event);
     }
 }
-
-
 /**
  * 封装使用
  */
@@ -110,12 +110,12 @@ public class MainActivity extends FragmentActivity {
 //                new MyBusEven.ICallBack() {
 //                    @Override
 //                    public void back(Object o) {
-//                        ToastUtiles.toastShort(MainActivity.this, ((TopMovieListInfoEntity) o).toString());
+//                        ToastUtiles.toastShort(MainActivity.this, ((JokeInfoEntity) o).toString());
 //                        Logs.eprintln("MyBusEven1");
 //                    }
 //                });
 //
-//        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(TopMovieListInfoEntity.class, o -> {
+//        MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).observe(JokeInfoEntity.class, o -> {
 //            Logs.eprintln("MyBusEven2");
 //        });
 //    }

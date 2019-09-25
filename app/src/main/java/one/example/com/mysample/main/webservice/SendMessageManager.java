@@ -1,6 +1,6 @@
 package one.example.com.mysample.main.webservice;
 import io.reactivex.Observable;
-import one.example.com.mysample.main.webservice.bean.TopMovieListInfoEntity;
+import one.example.com.mysample.main.webservice.bean.JokeInfoEntity;
 
 /**
  * 消息发送管理
@@ -45,7 +45,7 @@ public class SendMessageManager {
      * @param con 快递单号
      */
     public void getMoveTop(int start, int con) {
-        Observable<TopMovieListInfoEntity> observable = retrofitService.getMoveTopRx(start, con);
-        httpChannel.sendMessage(observable, Constant.UrlOrigin.get_move_post_info);
+        Observable<JokeInfoEntity> observable = retrofitService.getMoveTopRx(start, con,"video");
+        httpChannel.sendMessage(observable, Constant.UrlOrigin.get_joke_post_info);
     }
 }

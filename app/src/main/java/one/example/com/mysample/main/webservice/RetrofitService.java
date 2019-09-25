@@ -1,6 +1,6 @@
 package one.example.com.mysample.main.webservice;
 
-import one.example.com.mysample.main.webservice.bean.TopMovieListInfoEntity;
+import one.example.com.mysample.main.webservice.bean.JokeInfoEntity;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import io.reactivex.Observable;
@@ -35,7 +35,6 @@ public interface RetrofitService {
 //    @GET(Constant.UrlOrigin.get_post_info)
 //    Observable<PostInfo> getPostInfoRx(@Query("type") String type, @Query("postid") String postid);
 
-
-    @GET(Constant.UrlOrigin.get_move_post_info)
-    Observable<TopMovieListInfoEntity> getMoveTopRx(@Query("start") int start, @Query("count") int postid);
+    @GET(Constant.UrlOrigin.get_joke_post_info)
+    Observable<JokeInfoEntity> getMoveTopRx(@Query("page") int start, @Query("count") int postid,@Query("type") String types);
 }

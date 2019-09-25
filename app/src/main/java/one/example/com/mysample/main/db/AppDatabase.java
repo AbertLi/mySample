@@ -2,38 +2,22 @@ package one.example.com.mysample.main.db;
 
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
 import android.arch.persistence.room.Database;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import java.util.List;
-
 import one.example.com.mysample.AppInstance;
-import one.example.com.mysample.main.db.dao.CastsDao;
-import one.example.com.mysample.main.db.dao.DirectorsDao;
-import one.example.com.mysample.main.db.dao.GenresDao;
-import one.example.com.mysample.main.db.dao.ImagesDao;
-import one.example.com.mysample.main.db.dao.RatingDao;
-import one.example.com.mysample.main.db.dao.SubjectsDao;
-import one.example.com.mysample.main.db.entity.CastsEntity;
-import one.example.com.mysample.main.db.entity.DirectorsEntity;
-import one.example.com.mysample.main.db.entity.GenresEntity;
-import one.example.com.mysample.main.db.entity.ImagesEntity;
-import one.example.com.mysample.main.db.entity.RatingEntity;
-import one.example.com.mysample.main.db.entity.SubjectsEntity;
+import one.example.com.mysample.main.db.dao.JokeDao;
+import one.example.com.mysample.main.db.entity.JokeEntity;
 import one.example.com.mysample.utile.AppExecutors;
 
 /**
  * 目前数据库没有建立索引
  */
-@Database(entities = {SubjectsEntity.class, RatingEntity.class, ImagesEntity.class, GenresEntity.class,
-        DirectorsEntity.class, CastsEntity.class}, version = DbConstant.DB_VERSION_1)
+@Database(entities = {JokeEntity.class}, version = DbConstant.DB_VERSION_1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase mAppDatabase;
 
@@ -79,15 +63,5 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     };
 
-    public abstract SubjectsDao subjectsDao();
-
-    public abstract RatingDao ratingDao();
-
-    public abstract ImagesDao imagesDao();
-
-    public abstract GenresDao genresDao();
-
-    public abstract DirectorsDao directorsDao();
-
-    public abstract CastsDao castsDao();
+    public abstract JokeDao jokeDao();
 }

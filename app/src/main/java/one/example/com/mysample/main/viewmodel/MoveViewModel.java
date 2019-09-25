@@ -6,19 +6,19 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.support.annotation.NonNull;
 
-import one.example.com.mysample.main.viewmodel.repository.MoveTopRepository;
+import one.example.com.mysample.main.viewmodel.repository.JokeRepository;
 
 /**
  * 直接和UI打交道
  */
 public class MoveViewModel extends AndroidViewModel {
     MediatorLiveData<MoveLiveDataBean> mMoveTopLiveData;
-    MoveTopRepository mMoveTopRepository;
+    JokeRepository mMoveTopRepository;
 
     public MoveViewModel(@NonNull Application application) {
         super(application);
         mMoveTopLiveData = new MediatorLiveData<>();
-        mMoveTopRepository = new MoveTopRepository();
+        mMoveTopRepository = new JokeRepository();
     }
 
     public LiveData<MoveLiveDataBean> getSubjectData() {

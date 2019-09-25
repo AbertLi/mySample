@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity
 import android.widget.Button
 import android.widget.LinearLayout
 import one.example.com.mysample.main.db.AppDatabase
-import one.example.com.mysample.main.db.entity.SubjectsEntity
+import one.example.com.mysample.main.db.entity.JokeEntity
 import one.example.com.mysample.utile.Logs
 
 class DbTestActivity : FragmentActivity() {
@@ -70,30 +70,18 @@ class DbTestActivity : FragmentActivity() {
         when (id) {
             insertBtnId -> {
                 Logs.eprintln("click  insertBtnId")
-                var subjectEntity = SubjectsEntity()
-                subjectEntity.id = "one"
-                subjectEntity.title = "title1"
-                subjectEntity.collect_count = 1000
-                subjectEntity.original_title = "original_title1"
-                subjectEntity.subtype = "subtype1"
-                subjectEntity.year = "year1"
-                subjectEntity.alt = "alt1"
+                var subjectEntity = JokeEntity()
 
 
-                var subjectEntity2 = SubjectsEntity()
-                subjectEntity2.id = "two"
-                subjectEntity2.title = "title1"
-                subjectEntity2.collect_count = 1000
-                subjectEntity2.original_title = "original_title1"
-                subjectEntity2.subtype = "subtype1"
-                subjectEntity2.year = "year1"
-                subjectEntity2.alt = "alt1"
 
-                db?.subjectsDao()!!.insertSubjects(subjectEntity, subjectEntity2)
+                var subjectEntity2 = JokeEntity()
+
+
+                db?.jokeDao()!!.insertSubjects(subjectEntity, subjectEntity2)
             }
             queryBtnId -> {
                 Logs.eprintln("click  queryBtnId")
-//                var subjectEnt = db?.subjectsDao()!!.queryList(10, 0)
+//                var subjectEnt = db?.jokeDao()!!.queryList(10, 0)
 //                Logs.eprintln(" subjectEntityList  lenth id="+subjectEnt.size)
 //
 //                for (se in subjectEnt) {

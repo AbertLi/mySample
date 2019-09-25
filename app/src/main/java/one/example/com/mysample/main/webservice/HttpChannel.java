@@ -7,6 +7,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
 import one.example.com.mysample.utile.Logs;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -36,6 +37,7 @@ public class HttpChannel {
                 .build();
         retrofitService = retrofit.create(RetrofitService.class);
     }
+
 
     /**
      * 发送消息

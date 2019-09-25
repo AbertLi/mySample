@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="appComponentFactory"
         android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/movies_logo"
@@ -16,7 +18,8 @@
         android:roundIcon="@mipmap/movies_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        >
         <activity android:name=".main.ui.Main2Activity">
         </activity>
 

@@ -15,6 +15,7 @@ public class DbConstant {
     public static final String MOVEINFO_GENRES_TABLE = "moveinfo_genres_table";
     public static final String MOVEINFO_CASTS_TABLE = "moveinfo_casts_table";
     public static final String MOVEINFO_DIRECTORS_TABLE = "moveinfo_directors_table";
+    public static final String JOKE_ENTITY_TABLE = "jokey_entity_table";
 
 
 }

@@ -12,9 +12,8 @@ public class Constant {
      * 服务器地址
      */
 
-    //  http://www.kuaidi100.com/query?type=11111111&postid=aljfkd
-    public static final String SERVER_URL = "http://www.kuaidi100.com/";
-    public static final String SERVER_URL2 = "https://api.douban.com/v2/movie/";
+    //  http://api.apiopen.top/getJoke?page=1&count=10&type=video
+    public static final String SERVER_URL2 = "https://api.apiopen.top/";
 
     /**
      * 接口请求地址
@@ -26,6 +25,6 @@ public class Constant {
         public static final String get_post_info = "query";
 
 
-        public static final String get_move_post_info = "top250";
+        public static final String get_joke_post_info = "getJoke";
     }
 }

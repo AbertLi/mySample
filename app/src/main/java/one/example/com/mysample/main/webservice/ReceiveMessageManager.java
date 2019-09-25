@@ -1,10 +1,8 @@
 package one.example.com.mysample.main.webservice;
 
-import com.google.gson.JsonObject;
-
 import org.greenrobot.eventbus.EventBus;
 
-import one.example.com.mysample.main.webservice.bean.TopMovieListInfoEntity;
+import one.example.com.mysample.main.webservice.bean.JokeInfoEntity;
 import one.example.com.mysample.utile.EvenType;
 import one.example.com.mysample.utile.Logs;
 import one.example.com.mysample.utile.MyBusEven;
@@ -34,9 +32,10 @@ public class ReceiveMessageManager {
      */
     public void dispatchMessage(BaseBean baseBean, String urlOrigin, String failMsg) {
         switch (urlOrigin) {
-            case Constant.UrlOrigin.get_move_post_info:
-                Logs.eprintln("ReceiveMessageManager", "" + ((TopMovieListInfoEntity) baseBean).toString());
-//                TopMovieListInfoEntity postInfo1 = (TopMovieListInfoEntity) baseBean;
+            case Constant.UrlOrigin.get_joke_post_info:
+                if(baseBean!=null)
+                Logs.eprintln("ReceiveMessageManager", "" + ((JokeInfoEntity) baseBean).toString());
+//                JokeInfoEntity postInfo1 = (JokeInfoEntity) baseBean;
 //                EventBus.getDefault().post(postInfo1);
                 if (baseBean == null && failMsg != null) {
                     MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).postFail(failMsg);
@@ -59,7 +58,7 @@ public class ReceiveMessageManager {
 //    //JsonObject
 //    public void dispatchMessage2(JsonObject baseBean, String urlOrigin) {
 //        switch (urlOrigin) {
-//            case Constant.UrlOrigin.get_move_post_info:
+//            case Constant.UrlOrigin.get_joke_post_info:
 //                Logs.eprintln("ReceiveMessageManager", "" + baseBean.toString());
 //                MyBusEven.getInstance().with(EvenType.EVEN_TOP250_REQUEST).postValue(baseBean);
 //

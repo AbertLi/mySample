@@ -28,6 +28,9 @@
 
 二，项目框架:binding ，viewmodel , liveData , room , retrofit , Rxjava ,SmartRfreshLayout , RecyclerView , Fresco
 
+   开源三方框架。
+   播放器框架GSYVideoPlayer  https://github.com/CarGuo/GSYVideoPlayer
+
 
 
 三，项目业务架构图：链接
@@ -39,6 +42,8 @@
 
 
 五，埋点上报的传输数据格式，使用Protobuf
+
+
 
 豆瓣top250的请求链接
 https://api.douban.com/v2/movie/top250?start=0&count=3
@@ -259,9 +264,74 @@ https://api.douban.com/v2/movie/top250?start=0&count=3
 }
 
 
+https://api.apiopen.top/getJoke?page=1&count=3&type=video
+返回结果
 
-
-
+{
+	"code": 200,
+	"message": "成功!",
+	"result": [{
+		"sid": "29786816",
+		"text": "灵魂拷问，游戏和女朋友哪个更重要？",
+		"type": "video",
+		"thumbnail": "http://wimg.spriteapp.cn/picture/2019/0922/5d8721a3955fe_wpd.jpg",
+		"video": "http://wvideo.spriteapp.cn/video/2019/0922/5d8721a3955fe_wpd.mp4",
+		"images": null,
+		"up": "67",
+		"down": "0",
+		"forward": "0",
+		"comment": "22",
+		"uid": "23123009",
+		"name": "安可曲",
+		"header": "http://wimg.spriteapp.cn/profile/large/2019/07/03/5d1c79d980744_mini.jpg",
+		"top_comments_content": null,
+		"top_comments_voiceuri": null,
+		"top_comments_uid": null,
+		"top_comments_name": null,
+		"top_comments_header": null,
+		"passtime": "2019-09-23 02:58:01"
+	}, {
+		"sid": "29786296",
+		"text": "当孩子找爸爸要生活费时爸爸的反应。。。",
+		"type": "video",
+		"thumbnail": "http://wimg.spriteapp.cn/picture/2019/0922/5d86e8f712b71_wpd.jpg",
+		"video": "http://wvideo.spriteapp.cn/video/2019/0922/5d86e8f712b71_wpd.mp4",
+		"images": null,
+		"up": "67",
+		"down": "2",
+		"forward": "0",
+		"comment": "19",
+		"uid": "23131296",
+		"name": "水山金公",
+		"header": "http://wimg.spriteapp.cn/profile/large/2019/07/04/5d1d903a089c4_mini.jpg",
+		"top_comments_content": null,
+		"top_comments_voiceuri": null,
+		"top_comments_uid": null,
+		"top_comments_name": null,
+		"top_comments_header": null,
+		"passtime": "2019-09-23 02:18:01"
+	}, {
+		"sid": "29786650",
+		"text": "看看情商高的人如何化解危机，还能给周人的人带来欢乐。",
+		"type": "video",
+		"thumbnail": "http://wimg.spriteapp.cn/picture/2019/0922/6773de70-dcfe-11e9-8ea4-1866daeb0df1_wpd.jpg",
+		"video": "http://wvideo.spriteapp.cn/video/2019/0922/6773de70-dcfe-11e9-8ea4-1866daeb0df1_wpd.mp4",
+		"images": null,
+		"up": "450",
+		"down": "10",
+		"forward": "16",
+		"comment": "17",
+		"uid": "17604620",
+		"name": "小蟠桃",
+		"header": "http://wimg.spriteapp.cn/profile/large/2018/11/12/5be93e5b8d489_mini.jpg",
+		"top_comments_content": null,
+		"top_comments_voiceuri": null,
+		"top_comments_uid": null,
+		"top_comments_name": null,
+		"top_comments_header": null,
+		"passtime": "2019-09-23 01:38:04"
+	}]
+}
 
 
 

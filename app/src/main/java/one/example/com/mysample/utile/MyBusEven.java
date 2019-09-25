@@ -58,7 +58,7 @@ public class MyBusEven {
             Enumeration<ICallBack> e2 = iCallBackTable.elements();
             while (e2.hasMoreElements()) {
                 ICallBack callBack = (ICallBack) e2.nextElement();
-                callBack.back(failMsg);
+                callBack.fail();
             }
         }
 
