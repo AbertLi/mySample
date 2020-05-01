@@ -1,1 +1,2 @@
 1,test git add file
+2,添加一条记录。测试看看reset 命令
